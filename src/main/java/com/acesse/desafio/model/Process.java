@@ -2,44 +2,75 @@ package com.acesse.desafio.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
+@Entity
 public class Process {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "numberProcess")
 	private Long numberProcess;
+	
+	@Column(name = "subject")
 	private String subject;
-	private String applicantsName;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "phone")
+	private String phone;
+	
+	@Column(name = "zip_code")
 	private int zipCode;
+	
+	@Column(name = "city")
 	private String city;
+	
+	@Column(name = "district")
 	private String district;
+	
+	@Column(name = "street")
 	private String street;
+	
+	@Column(name = "number")
 	private int number;
+	
+	@Column(name = "additional")
+	private String additional;
+	
+	@Column(name = "processDate")
 	private Date processDate;
+	
+	@Column(name = "creationDate")
 	private Date creationDate;
+	
+	@Column(name = "active")
 	private boolean active;
 	
-	@Lob
-	private byte[] data;
-
-	public Process(Long numberProcess, String subject, String applicantsName, int zipCode, String city, String district,
-			String street, int number, Date processDate, Date creationDate, byte[] data, boolean active) {
-		super();
+	public Process(Long numberProcess, String subject, String name, String phone,
+			String email, int zipCode, String city, String district, String street, int number,
+			String additional, Date processDate, Date creationDate, boolean active) {
 		this.numberProcess = numberProcess;
 		this.subject = subject;
-		this.applicantsName = applicantsName;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
 		this.zipCode = zipCode;
 		this.city = city;
 		this.district = district;
 		this.street = street;
 		this.number = number;
+		this.additional = additional;
 		this.processDate = processDate;
 		this.creationDate = creationDate;
-		this.data = data;
 		this.active = active;
 	}
 
@@ -59,12 +90,12 @@ public class Process {
 		this.subject = subject;
 	}
 
-	public String getApplicantsName() {
-		return applicantsName;
+	public String getName() {
+		return name;
 	}
 
-	public void setApplicantsName(String applicantsName) {
-		this.applicantsName = applicantsName;
+	public void setApplicantsName(String name) {
+		this.name = name;
 	}
 
 	public int getZipCode() {
@@ -123,14 +154,6 @@ public class Process {
 		this.creationDate = creationDate;
 	}
 
-	public byte[] getData() {
-		return data;
-	}
-
-	public void setData(byte[] data) {
-		this.data = data;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
@@ -138,5 +161,29 @@ public class Process {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAdditional() {
+		return additional;
+	}
+
+	public void setAdditional(String additional) {
+		this.additional = additional;
+	}
+
 }
