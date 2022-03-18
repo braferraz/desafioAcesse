@@ -13,7 +13,7 @@ public class Process {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "numberProcess")
+	@Column(name = "number_process")
 	private Long numberProcess;
 	
 	@Column(name = "subject")
@@ -29,7 +29,7 @@ public class Process {
 	private String phone;
 	
 	@Column(name = "zip_code")
-	private int zipCode;
+	private String zipCode;
 	
 	@Column(name = "city")
 	private String city;
@@ -55,8 +55,12 @@ public class Process {
 	@Column(name = "active")
 	private boolean active;
 	
+	public Process() {
+		
+	}
+	
 	public Process(Long numberProcess, String subject, String name, String phone,
-			String email, int zipCode, String city, String district, String street, int number,
+			String email, String zipCode, String city, String district, String street, int number,
 			String additional, Date processDate, Date creationDate, boolean active) {
 		this.numberProcess = numberProcess;
 		this.subject = subject;
@@ -94,15 +98,15 @@ public class Process {
 		return name;
 	}
 
-	public void setApplicantsName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 

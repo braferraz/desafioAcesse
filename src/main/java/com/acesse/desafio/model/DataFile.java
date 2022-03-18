@@ -26,7 +26,9 @@ public class DataFile {
 	@Column(name = "pdfByte")
 	private byte[] pdfByte;
 
-	
+	public DataFile() {
+		
+	}
 	public DataFile(String name, String type, byte[] pdfByte) {
 		this.name = name;
 		this.type = type;
