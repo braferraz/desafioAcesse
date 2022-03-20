@@ -40,7 +40,7 @@ public class ProcessController {
 	}
 	
 	@RequestMapping(value="process/delete/{id}", method = RequestMethod.PUT, produces= MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Process> deleteProcess(@PathVariable(value="id") long id, @RequestBody Process newProcess) {
+	public ResponseEntity<Process> deleteProcess(@PathVariable(value="id") long id) {
 		Optional<Process> oldProcess = processRepository.findById(id);
 		if(oldProcess.isPresent()) {
 			Process process = oldProcess.get();
