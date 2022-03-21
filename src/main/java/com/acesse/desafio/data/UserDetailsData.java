@@ -27,6 +27,9 @@ public class UserDetailsData implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return new ArrayList<>();
 	}
+	public String getName() {
+		return usu.orElse(new User()).getName();
+	}
 
 	@Override
 	public String getPassword() {

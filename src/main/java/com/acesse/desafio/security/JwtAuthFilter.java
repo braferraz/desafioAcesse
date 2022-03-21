@@ -52,6 +52,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 				.sign(Algorithm.HMAC512(TOKEN_PASSWORD));
 		
 		response.getWriter().write(token);
+		response.getWriter().write(" " + userData.getName());
 		response.getWriter().flush();
 	}
 }
