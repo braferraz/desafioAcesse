@@ -55,13 +55,16 @@ public class Process {
 	@Column(name = "active")
 	private boolean active;
 	
+	@Column(name = "deleted_by")
+	private String deletedBy;
+	
 	public Process() {
 		
 	}
 	
 	public Process(Long numberProcess, String subject, String name, String phone,
 			String email, String zipCode, String city, String district, String street, int number,
-			String additional, Date processDate, Date creationDate, boolean active) {
+			String additional, Date processDate, Date creationDate, boolean active, String deletedBy) {
 		this.numberProcess = numberProcess;
 		this.subject = subject;
 		this.name = name;
@@ -76,6 +79,15 @@ public class Process {
 		this.processDate = processDate;
 		this.creationDate = creationDate;
 		this.active = active;
+		this.deletedBy = deletedBy;
+	}
+
+	public String getDeletedBy() {
+		return deletedBy;
+	}
+
+	public void setDeletedBy(String deletedBy) {
+		this.deletedBy = deletedBy;
 	}
 
 	public Long getNumberProcess() {

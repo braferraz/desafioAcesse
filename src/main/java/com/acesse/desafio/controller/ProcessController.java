@@ -24,6 +24,7 @@ public class ProcessController {
 	@Autowired 
 	ProcessRepository processRepository;
 	
+	
 	@PostMapping("process/new")
 	public Process Post(@RequestBody Process process) {
 		return processRepository.save(process);
@@ -39,14 +40,14 @@ public class ProcessController {
 			return processRepository.findById(id);
 	}
 	
-	@RequestMapping(value="process/delete/{id}", method = RequestMethod.PUT, produces= MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Process> deleteProcess(@PathVariable(value="id") long id) {
+	@RequestMapping(value="process/delete/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Process> deleteProcess(@RequestBody Process newProcess , @PathVariable(value="id") long id) {
 		Optional<Process> oldProcess = processRepository.findById(id);
 		if(oldProcess.isPresent()) {
 			Process process = oldProcess.get();
 			
 			process.setActive(false);
-			
+			process.setDeletedBy(newProcess.getDeletedBy());
 			processRepository.save(process);
 			return new ResponseEntity<Process>(process, HttpStatus.OK);
 		}
