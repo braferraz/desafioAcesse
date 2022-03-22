@@ -1,5 +1,7 @@
 package com.acesse.desafio.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,11 @@ public class ProcessController {
 	
 	@PostMapping("process/new")
 	public Process Post(@RequestBody Process process) {
+		Date now = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:MM");
+        String date = formatter.format(now);
+        process.setCreationDate(date);
+        
 		return processRepository.save(process);
 	}
 	
@@ -81,4 +88,9 @@ public class ProcessController {
 		}
 	}
 	
+	@RequestMapping(value="process/search/{search}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+	public Page<Process> listSearchedProcess(Pageable pageable, @PathVariable(value="search") String search){
+		System.out.println(processRepository.findSearchedProcess(pageable, search));
+		return processRepository.findSearchedProcess(pageable, search);
+	}
 }

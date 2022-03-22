@@ -1,5 +1,6 @@
 package com.acesse.desafio;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ public class DesafioAcesseApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DesafioAcesseApplication.class, args);
 	}
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() { 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

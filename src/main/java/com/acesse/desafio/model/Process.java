@@ -50,7 +50,7 @@ public class Process {
 	private Date processDate;
 	
 	@Column(name = "creationDate")
-	private Date creationDate;
+	private String creationDate;
 	
 	@Column(name = "active")
 	private boolean active;
@@ -64,7 +64,7 @@ public class Process {
 	
 	public Process(Long numberProcess, String subject, String name, String phone,
 			String email, String zipCode, String city, String district, String street, int number,
-			String additional, Date processDate, Date creationDate, boolean active, String deletedBy) {
+			String additional, Date processDate, String creationDate, boolean active, String deletedBy) {
 		this.numberProcess = numberProcess;
 		this.subject = subject;
 		this.name = name;
@@ -162,11 +162,11 @@ public class Process {
 		this.processDate = processDate;
 	}
 
-	public Date getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 
