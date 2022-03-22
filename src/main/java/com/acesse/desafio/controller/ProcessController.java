@@ -56,4 +56,29 @@ public class ProcessController {
 		}
 	}
 	
+	@RequestMapping(value="process/update/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Process> updateProcess(@RequestBody Process newProcess , @PathVariable(value="id") long id) {
+		Optional<Process> oldProcess = processRepository.findById(id);
+		if(oldProcess.isPresent()) {
+			Process process = oldProcess.get();
+			
+			process.setSubject(newProcess.getSubject());
+			process.setName(newProcess.getName());
+			process.setEmail(newProcess.getEmail());
+			process.setPhone(newProcess.getPhone());
+			process.setZipCode(newProcess.getZipCode());
+			process.setCity(newProcess.getCity());
+			process.setDistrict(newProcess.getDistrict());
+			process.setStreet(newProcess.getStreet());
+			process.setNumber(newProcess.getNumber());
+			process.setAdditional(newProcess.getAdditional());
+			
+			processRepository.save(process);
+			return new ResponseEntity<Process>(process, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 }

@@ -51,4 +51,16 @@ public class DataFileController {
                 .body(new ByteArrayResource(retrievedPdf.get().getPdfByte()));
 	}
 	
+	@RequestMapping(value="/update/{id}", method = RequestMethod.PUT, produces = {"application/json", "text/xml"})
+	public DataFile uploadFile(@RequestParam("pdfFile") MultipartFile file, @PathVariable("id") long pdfId) throws IOException {
+		
+		Optional<DataFile> data = dataFileRepository.findById(pdfId);
+		data.get().setName(file.getName());
+		data.get().setPdfByte(file.getBytes());
+		data.get().setType(file.getContentType());
+		
+		return dataFileRepository.save(data.get());
+	}
+	
+	
 }
