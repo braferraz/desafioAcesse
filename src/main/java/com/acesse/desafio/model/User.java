@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name = "user")
+@Table(name = "user_process")
 public class User {
 
 	@Id

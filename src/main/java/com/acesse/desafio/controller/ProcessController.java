@@ -90,7 +90,6 @@ public class ProcessController {
 	
 	@RequestMapping(value="process/search/{search}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
 	public Page<Process> listSearchedProcess(Pageable pageable, @PathVariable(value="search") String search){
-		System.out.println(processRepository.findSearchedProcess(pageable, search));
 		return processRepository.findSearchedProcess(pageable, search);
 	}
 }

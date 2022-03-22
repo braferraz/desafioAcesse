@@ -46,10 +46,10 @@ public class Process {
 	@Column(name = "additional")
 	private String additional;
 	
-	@Column(name = "processDate")
+	@Column(name = "process_date")
 	private Date processDate;
 	
-	@Column(name = "creationDate")
+	@Column(name = "creation_date")
 	private String creationDate;
 	
 	@Column(name = "active")

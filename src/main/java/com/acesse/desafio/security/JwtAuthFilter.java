@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
 
-	public static final int TOKEN_EXPIRATES = 600_000;
+	public static final int TOKEN_EXPIRATES = 1200_000;
 	public static final String TOKEN_PASSWORD = "1267ca1e-4047-43d7-8427-7350597d0398";
 
 	
