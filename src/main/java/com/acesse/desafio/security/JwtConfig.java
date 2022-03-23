@@ -48,7 +48,7 @@ public class JwtConfig extends WebSecurityConfigurerAdapter{
     CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("https://desafioacesse.herokuapp.com/login");
+        configuration.addAllowedOrigin("https://teste-1175a.web.app");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
