@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@PropertySource(value = {"classpath:application.properties"})
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
 
@@ -53,7 +55,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 		String token = JWT.create()
 				.withSubject(userData.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRATES))
-				.sign(Algorithm.HMAC512(TOKEN_PASSWORD));
+				.sign(Algorithm.HMAC512(TOKEN_PASSWORD.getBytes()));
 		
 		response.getWriter().write(token);
 		response.getWriter().write(" " + userData.getName());

@@ -17,6 +17,7 @@ public class DesafioAcesseApplication {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() { 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println(encoder.encode("teste"));
 		return encoder;
 	}
 
