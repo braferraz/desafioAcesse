@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,8 +24,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
 
-	public static final int TOKEN_EXPIRATES = 1200_000;
-	public static final String TOKEN_PASSWORD = "1267ca1e-4047-43d7-8427-7350597d0398";
+	@Value("${jwt.expiration}")
+	public int TOKEN_EXPIRATES;
+	
+	@Value("${jwt.secret}")
+	public String TOKEN_PASSWORD;
 
 	
 	private final AuthenticationManager authenticationManager;
