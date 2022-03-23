@@ -13,16 +13,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 
 public class JwtFilterValidation extends BasicAuthenticationFilter{
 
 	public static final String HEADER_ATTRIBUTE = "Authorization";
 	public static final String ATTRIBUTE_PREFIX = "Bearer ";
+
+	private JwtUtil jwtUtil;
 	
-	public JwtFilterValidation(AuthenticationManager authenticationManager) {
+	public JwtFilterValidation(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
 		super(authenticationManager);
+		this.jwtUtil = jwtUtil;
 	}
 	
 	@Override
@@ -46,10 +47,7 @@ public class JwtFilterValidation extends BasicAuthenticationFilter{
 	}
 
 	private UsernamePasswordAuthenticationToken getAuthenticationToken(String token) {
-		String user = JWT.require(Algorithm.HMAC512(JwtAuthFilter.TOKEN_PASSWORD))
-				.build()
-				.verify(token)
-				.getSubject();
+		String user = jwtUtil.validToken(token);
 		if(user == null) {
 			return null;
 		}

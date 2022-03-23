@@ -18,12 +18,14 @@ import com.acesse.desafio.service.UserDetailsServiceImpl;
 @EnableWebSecurity
 public class JwtConfig extends WebSecurityConfigurerAdapter{
 
+	private JwtUtil jwtUtil;
 	private final UserDetailsServiceImpl userService;
 	private final PasswordEncoder passwordEncoder;
 	
-	public JwtConfig(UserDetailsServiceImpl userService, PasswordEncoder passwordEncoder) {
+	public JwtConfig(UserDetailsServiceImpl userService, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
 		this.userService = userService;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtUtil = jwtUtil;
 	}
 	
 	@Override
@@ -37,15 +39,16 @@ public class JwtConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST,"/login").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.addFilter(new JwtAuthFilter(authenticationManager()))
-			.addFilter(new JwtFilterValidation(authenticationManager()))
+			.addFilter(new JwtAuthFilter(authenticationManager(), jwtUtil))
+			.addFilter(new JwtFilterValidation(authenticationManager(), jwtUtil))
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
+	
 	@Bean
     CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://localhost:4200");
+        configuration.addAllowedOrigin("https://desafioacesse.herokuapp.com/login");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
