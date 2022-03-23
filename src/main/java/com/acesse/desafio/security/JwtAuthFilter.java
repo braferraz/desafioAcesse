@@ -27,10 +27,10 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
 
 	@Value("${jwt.expiration}")
-	public static int TOKEN_EXPIRATES;
+	public int TOKEN_EXPIRATES;
 	
 	@Value("${jwt.secret}")
-	public static String TOKEN_PASSWORD;
+	public String TOKEN_PASSWORD;
 
 	
 	private final AuthenticationManager authenticationManager;

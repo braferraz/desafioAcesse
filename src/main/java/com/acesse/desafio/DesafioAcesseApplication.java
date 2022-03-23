@@ -7,17 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 @SpringBootApplication
 public class DesafioAcesseApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(DesafioAcesseApplication.class, args);
 	}
-	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() { 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(encoder.encode("teste"));
 		return encoder;
 	}
 
